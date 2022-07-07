@@ -1,25 +1,26 @@
 package Classes;
 
+import java.util.ArrayList;
+
 public class Calculator {
-    Reader reader = new Reader(); // New reader class
+    Reader reader = new Reader();
     String response = Reader.response; // instantiates response from Reader class to use in this class
-    static String cResponse;
-    int iResponse;
+    ArrayList<Integer> iResponse = new ArrayList<Integer>(); // iResponse, or integer response, is used to organize each
+                                                             // int in response (chronological).
 
-    public /* int */void ResponseToInts(String response) {
-        cResponse = "" + response.charAt(1);
-        System.out.println("hi");
+    public ArrayList<Integer> ResponseToInts(String response) {
 
-        for (int i = 1; i == response.length(); i++) {
+        for (int i = 0; i < response.length(); i++) {
 
-            /*
-             * try {
-             * iResponse = Integer.parseInt(cResponse);
-             * } catch (Exception e) {
-             * System.out.println("Woops, that's not a time! Try again. " + e);
-             * }
-             */}
-        // return iResponse;
+            try {
+                iResponse.add(Integer.parseInt("" + response.charAt(i)));
+            } catch (Exception e) {
+                System.out.println("Woops, this character isn't a number: " + e);
+                // This will probably be changed to say or do something else
+            }
+
+        }
+        return iResponse;
 
     }
 
