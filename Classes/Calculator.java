@@ -6,6 +6,8 @@ public class Calculator {
     String response;
     ArrayList<Integer> iResponse = new ArrayList<Integer>(); // iResponse, or integer response, is used to organize each
                                                              // int in response (chronological)
+    int minutes;
+    boolean isTrue = false; // Test variable for testing conditions
 
     // Calculator constructor
     public Calculator(String response) {
@@ -20,7 +22,7 @@ public class Calculator {
                 iResponse.add(Integer.parseInt("" + response.charAt(i)));
             } catch (Exception e) {
 
-                System.out.println("Woops, this character isn't a number: " + e);
+                // System.out.println("Woops, this character isn't a number: " + e);
                 // This will probably be changed to say or do something else
             }
 
@@ -31,7 +33,6 @@ public class Calculator {
 
     public int ArrayToInt() {
         ArrayList<Integer> a = StringToArray(this.response);
-        int minutes = 0;
 
         for (int i = 0; i < a.size(); i++) {
             switch (i) {
@@ -53,6 +54,32 @@ public class Calculator {
             }
         }
 
+        return minutes;
+    }
+
+    public int AMorPm() {
+        if (this.response.equals("PM") ||
+                this.response.equals("Pm") ||
+                this.response.equals("pm") ||
+                this.response.equals("pM")) {
+
+            minutes += 720;
+
+        } else if (this.response.equals("AM") ||
+                this.response.equals("Am") ||
+                this.response.equals("am") ||
+                this.response.equals("aM")) {
+
+            minutes += 0;
+
+        } else {
+            System.out.println("Invalid Answer, try again");
+        }
+        return minutes;
+    }
+
+    public int ReturnMinutes() {
+        ArrayToInt();
         return minutes;
     }
 
